@@ -1,3 +1,4 @@
+import 'package:bwa_kosans/pages/home_pages.dart';
 import 'package:bwa_kosans/pages/splash_pages.dart';
 import 'package:bwa_kosans/themes.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,16 @@ class KosanApp extends StatelessWidget {
           secondary: orangeColor,
         ),
       ),
-      home: const SplashScreenPage(),
+      initialRoute: SplashScreenPage.routeName,
+      // home: const SplashScreenPage(),
+      routes: {
+        SplashScreenPage.routeName: (context) {
+          return const SplashScreenPage();
+        },
+        HomePageMenu.routeName: (context) {
+          return const HomePageMenu();
+        }
+      },
     );
   }
 }

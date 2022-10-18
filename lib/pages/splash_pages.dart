@@ -1,14 +1,27 @@
+import 'package:bwa_kosans/models/splash_arguments.dart';
+import 'package:bwa_kosans/pages/home_pages.dart';
 import 'package:bwa_kosans/themes.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({Key? key}) : super(key: key);
 
+  static const String routeName = "/splash";
+
   @override
   State<SplashScreenPage> createState() => _SplashScreenPageState();
 }
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
+  // navigasi ke halaman utama homepage
+  void navigasiHalamanHomePage(BuildContext context) {
+    Navigator.pushNamed(
+      context,
+      HomePageMenu.routeName,
+      arguments: SplashArguments("true"),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +82,9 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                       width: 200,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          navigasiHalamanHomePage(context);
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: purpleColor,
                           shape: const RoundedRectangleBorder(

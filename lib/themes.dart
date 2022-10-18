@@ -26,3 +26,10 @@ TextStyle purpleTextStyle = GoogleFonts.poppins().copyWith(
   fontWeight: FontWeight.w500,
   color: purpleColor,
 );
+
+TextStyle regularTextStyle = GoogleFonts.poppins().copyWith(
+  fontWeight: FontWeight.w400,
+  color: blackColor,
+);
+
+const double edgePadding = 24;
