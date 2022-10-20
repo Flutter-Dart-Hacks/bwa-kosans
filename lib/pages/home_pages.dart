@@ -1,6 +1,7 @@
 import 'package:bwa_kosans/models/city_data.dart';
 import 'package:bwa_kosans/themes.dart';
 import 'package:bwa_kosans/widgets/city_card.dart';
+import 'package:bwa_kosans/widgets/space_card.dart';
 import 'package:flutter/material.dart';
 
 class HomePageMenu extends StatefulWidget {
@@ -27,6 +28,7 @@ class _HomePageMenuState extends State<HomePageMenu> {
           child: ListView(
             controller: _scrollController,
             children: [
+              // NOTE: TITLE / HEADER
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: edgePadding),
                 child: Text(
@@ -51,6 +53,7 @@ class _HomePageMenuState extends State<HomePageMenu> {
               const SizedBox(
                 height: 20,
               ),
+              // NOTE: POPULAR CITIES
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: edgePadding),
                 child: Text(
@@ -83,24 +86,49 @@ class _HomePageMenuState extends State<HomePageMenu> {
                     ),
                     CardCity(
                       cityData: CityData(
-                          id: 2,
-                          name: 'Bandung',
-                          imageUrl: 'resources/images/city2.png'),
+                        id: 2,
+                        name: 'Bandung',
+                        imageUrl: 'resources/images/city2.png',
+                        isFavorite: true,
+                      ),
                     ),
                     const SizedBox(
                       width: 10,
                     ),
                     CardCity(
                       cityData: CityData(
-                          id: 3,
-                          name: 'Surabaya',
-                          imageUrl: 'resources/images/city3.png'),
+                        id: 3,
+                        name: 'Surabaya',
+                        imageUrl: 'resources/images/city3.png',
+                        isFavorite: true,
+                      ),
                     ),
                     const SizedBox(
                       width: edgePadding,
                     ),
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              // NOTE: RECOMMENDED SPACE
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: edgePadding),
+                child: Text(
+                  'Recommended Space',
+                  style: regularTextStyle.copyWith(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Column(
+                children: const [
+                  SpaceCard(),
+                ],
               )
             ],
           ),

@@ -7,6 +7,32 @@ class CardCity extends StatelessWidget {
 
   const CardCity({Key? key, required this.cityData}) : super(key: key);
 
+  Widget cekStatusPopularStars(CityData cityData) {
+    if (cityData.isFavorite) {
+      return Align(
+        alignment: Alignment.topRight,
+        child: Container(
+          width: 50,
+          height: 30,
+          decoration: const BoxDecoration(
+            color: purpleColor,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(30),
+            ),
+          ),
+          child: Center(
+            child: Image.asset(
+              'resources/images/icon_star_solid.png',
+              width: 22,
+            ),
+          ),
+        ),
+      );
+    } else {
+      return Container();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -25,25 +51,7 @@ class CardCity extends StatelessWidget {
                   width: 120,
                   height: 115,
                 ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    width: 50,
-                    height: 30,
-                    decoration: const BoxDecoration(
-                      color: purpleColor,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                      ),
-                    ),
-                    child: Center(
-                      child: Image.asset(
-                        'resources/images/icon_star_solid.png',
-                        width: 22,
-                      ),
-                    ),
-                  ),
-                )
+                cekStatusPopularStars(cityData),
               ],
             ),
             const SizedBox(
