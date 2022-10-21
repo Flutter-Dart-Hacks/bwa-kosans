@@ -21,9 +21,10 @@ class _HomePageMenuState extends State<HomePageMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        bottom: false,
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: edgePadding,
+            vertical: 0,
           ),
           child: ListView(
             controller: _scrollController,
@@ -125,10 +126,26 @@ class _HomePageMenuState extends State<HomePageMenu> {
               const SizedBox(
                 height: 16,
               ),
-              Column(
-                children: const [
-                  SpaceCard(),
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                ),
+                child: Column(
+                  children: const [
+                    SpaceCard(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SpaceCard(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SpaceCard(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                ),
               )
             ],
           ),

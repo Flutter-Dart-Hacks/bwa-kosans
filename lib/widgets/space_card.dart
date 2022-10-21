@@ -91,6 +91,12 @@ class SpaceCard extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
+            Text(
+              'Bandung, Germany',
+              style: greyTextStyle.copyWith(
+                fontSize: 14,
+              ),
+            ),
           ],
         )
       ],
