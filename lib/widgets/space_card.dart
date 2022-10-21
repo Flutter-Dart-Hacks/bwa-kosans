@@ -1,8 +1,10 @@
+import 'package:bwa_kosans/models/space_data.dart';
 import 'package:bwa_kosans/themes.dart';
 import 'package:flutter/material.dart';
 
 class SpaceCard extends StatelessWidget {
-  const SpaceCard({Key? key}) : super(key: key);
+  const SpaceCard({Key? key, required this.spaceData}) : super(key: key);
+  final SpaceData spaceData;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class SpaceCard extends StatelessWidget {
             child: Stack(
               children: [
                 Image.asset(
-                  'resources/images/space1.png',
+                  spaceData.imageUrl,
                   fit: BoxFit.cover,
                 ),
                 Align(
@@ -43,7 +45,7 @@ class SpaceCard extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 6),
                           child: Text(
-                            '4/5',
+                            '${spaceData.rating}/5',
                             style: whiteTextStyle.copyWith(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
@@ -65,7 +67,7 @@ class SpaceCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Kuretakeso Hott',
+              spaceData.name,
               style: blackTextStyle.copyWith(
                   fontSize: 18, fontWeight: FontWeight.w500),
             ),
@@ -74,7 +76,7 @@ class SpaceCard extends StatelessWidget {
             ),
             Text.rich(
               TextSpan(
-                text: '\$52',
+                text: '\$${spaceData.price}',
                 style: purpleTextStyle.copyWith(
                   fontSize: 16,
                 ),
@@ -92,7 +94,7 @@ class SpaceCard extends StatelessWidget {
               height: 16,
             ),
             Text(
-              'Bandung, Germany',
+              '${spaceData.city}, ${spaceData.country}',
               style: greyTextStyle.copyWith(
                 fontSize: 14,
               ),

@@ -1,4 +1,5 @@
 import 'package:bwa_kosans/models/city_data.dart';
+import 'package:bwa_kosans/models/space_data.dart';
 import 'package:bwa_kosans/themes.dart';
 import 'package:bwa_kosans/widgets/city_card.dart';
 import 'package:bwa_kosans/widgets/space_card.dart';
@@ -131,17 +132,44 @@ class _HomePageMenuState extends State<HomePageMenu> {
                   horizontal: 20,
                 ),
                 child: Column(
-                  children: const [
-                    SpaceCard(),
-                    SizedBox(
+                  children: [
+                    SpaceCard(
+                      spaceData: SpaceData(
+                          id: 1,
+                          name: 'Kuretakeso Hott',
+                          imageUrl: 'resources/images/space1.png',
+                          price: 52,
+                          city: 'Bandung',
+                          country: 'Germany',
+                          rating: 4),
+                    ),
+                    const SizedBox(
                       height: 20,
                     ),
-                    SpaceCard(),
-                    SizedBox(
+                    SpaceCard(
+                      spaceData: SpaceData(
+                          id: 2,
+                          name: 'Roemah Nenek',
+                          imageUrl: 'resources/images/space2.png',
+                          price: 11,
+                          city: 'Seattle',
+                          country: 'Bogor',
+                          rating: 5),
+                    ),
+                    const SizedBox(
                       height: 20,
                     ),
-                    SpaceCard(),
-                    SizedBox(
+                    SpaceCard(
+                      spaceData: SpaceData(
+                          id: 3,
+                          name: 'Darrling How',
+                          imageUrl: 'resources/images/space3.png',
+                          price: 20,
+                          city: 'Jakarta',
+                          country: 'Indonesia',
+                          rating: 3),
+                    ),
+                    const SizedBox(
                       height: 20,
                     ),
                   ],
