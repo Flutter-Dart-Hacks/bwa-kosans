@@ -25,6 +25,7 @@ class KosanApp extends StatelessWidget {
       ),
       initialRoute: SplashScreenPage.routeName,
       // home: const SplashScreenPage(),
+      // Menggunakan routing halaman
       routes: {
         SplashScreenPage.routeName: (context) {
           return const SplashScreenPage();
