@@ -127,6 +127,7 @@ class _HomePageMenuState extends State<HomePageMenu> {
               const SizedBox(
                 height: 16,
               ),
+              // NOTE: SPACE PAGES
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
