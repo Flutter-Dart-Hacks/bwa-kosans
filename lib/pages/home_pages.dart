@@ -2,6 +2,7 @@ import 'package:bwa_kosans/models/city_data.dart';
 import 'package:bwa_kosans/models/space_data.dart';
 import 'package:bwa_kosans/models/tips_data.dart';
 import 'package:bwa_kosans/themes.dart';
+import 'package:bwa_kosans/widgets/bottom_navbar_item.dart';
 import 'package:bwa_kosans/widgets/city_card.dart';
 import 'package:bwa_kosans/widgets/space_card.dart';
 import 'package:bwa_kosans/widgets/tips_card.dart';
@@ -223,11 +224,45 @@ class _HomePageMenuState extends State<HomePageMenu> {
                     ),
                   ],
                 ),
-              )
+              ),
+              const SizedBox(
+                height: 90,
+              ),
             ],
           ),
         ),
       ),
+      floatingActionButton: Container(
+        height: 65,
+        width: MediaQuery.of(context).size.width - (2 * edgePadding),
+        margin: const EdgeInsets.symmetric(horizontal: edgePadding),
+        decoration: BoxDecoration(
+          color: greyBottombarColor,
+          borderRadius: BorderRadius.circular(23),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: const [
+            BottomNavbarItem(
+              imageUrl: 'resources/images/icon_home.png',
+              isSelected: true,
+            ),
+            BottomNavbarItem(
+              imageUrl: 'resources/images/icon_mail.png',
+              isSelected: false,
+            ),
+            BottomNavbarItem(
+              imageUrl: 'resources/images/icon_card.png',
+              isSelected: false,
+            ),
+            BottomNavbarItem(
+              imageUrl: 'resources/images/icon_love.png',
+              isSelected: false,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
