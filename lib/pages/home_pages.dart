@@ -1,8 +1,10 @@
 import 'package:bwa_kosans/models/city_data.dart';
 import 'package:bwa_kosans/models/space_data.dart';
+import 'package:bwa_kosans/models/tips_data.dart';
 import 'package:bwa_kosans/themes.dart';
 import 'package:bwa_kosans/widgets/city_card.dart';
 import 'package:bwa_kosans/widgets/space_card.dart';
+import 'package:bwa_kosans/widgets/tips_card.dart';
 import 'package:flutter/material.dart';
 
 class HomePageMenu extends StatefulWidget {
@@ -32,7 +34,8 @@ class _HomePageMenuState extends State<HomePageMenu> {
             children: [
               // NOTE: TITLE / HEADER
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: edgePadding),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: edgePadding, vertical: 20),
                 child: Text(
                   'Explore Now',
                   style: blackTextStyle.copyWith(
@@ -137,7 +140,7 @@ class _HomePageMenuState extends State<HomePageMenu> {
                     SpaceCard(
                       spaceData: SpaceData(
                           id: 1,
-                          name: 'Kuretakeso Hott',
+                          name: 'Kuretakeso Garden',
                           imageUrl: 'resources/images/space1.png',
                           price: 52,
                           city: 'Bandung',
@@ -172,6 +175,51 @@ class _HomePageMenuState extends State<HomePageMenu> {
                     ),
                     const SizedBox(
                       height: 20,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              // NOTE: TIPS GUIDANCE
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: edgePadding),
+                child: Text(
+                  'Tips & Guidance',
+                  style: regularTextStyle.copyWith(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                ),
+                child: Column(
+                  children: [
+                    TipsGuidanceCard(
+                      tipsData: TipsData(
+                          id: 1,
+                          imageUrl: 'resources/images/tips1.png',
+                          title: 'City Guidelines',
+                          updatedAt: '20 Apr'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TipsGuidanceCard(
+                      tipsData: TipsData(
+                          id: 2,
+                          imageUrl: 'resources/images/tips2.png',
+                          title: 'Jakarta Fairship',
+                          updatedAt: '11 Dec'),
+                    ),
+                    const SizedBox(
+                      height: 10,
                     ),
                   ],
                 ),
