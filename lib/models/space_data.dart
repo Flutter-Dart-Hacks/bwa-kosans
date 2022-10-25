@@ -2,7 +2,7 @@ class SpaceData {
   int id = 0;
   String name = '';
   String imageUrl = '';
-  double price = 0;
+  int price = 0;
   String city = '';
   String country = '';
   int rating = 0;
