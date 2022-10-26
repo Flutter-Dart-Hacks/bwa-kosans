@@ -8,6 +8,7 @@ const blackColor = Color(0xff000000);
 const whiteColor = Color(0xffffffff);
 const greyColor = Color(0xff82868E);
 const greyBottombarColor = Color(0xffEAEAEA);
+const greyStar = Color(0xff989BA1);
 
 TextStyle blackTextStyle = GoogleFonts.poppins().copyWith(
   fontWeight: FontWeight.w500,

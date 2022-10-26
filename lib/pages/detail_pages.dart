@@ -1,5 +1,6 @@
 import 'package:bwa_kosans/pages/home_pages.dart';
 import 'package:bwa_kosans/themes.dart';
+import 'package:bwa_kosans/widgets/facility_item.dart';
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatefulWidget {
@@ -66,43 +67,160 @@ class _DetailPageState extends State<DetailPage> {
               child: ListView(
                 children: [
                   const SizedBox(
-                    height: 270,
+                    height: 250,
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
+                    height: 50,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.vertical(
                         top: Radius.circular(20),
                       ),
                       color: whiteColor,
                     ),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: edgePadding),
-                          child: Row(
-                            children: [
-                              Column(
-                                children: [
-                                  Text(
-                                    'Kuretakeso Garden',
-                                    style: blackTextStyle.copyWith(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 22,
+                  ),
+                  Column(
+                    children: [
+                      const SizedBox(
+                        height: 0,
+                      ),
+                      // NOTE: TITLE DETAIL HALAMAN
+                      Padding(
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: edgePadding),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Kuretakeso Garden',
+                                  style: blackTextStyle.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 2,
+                                ),
+                                Text.rich(
+                                  TextSpan(
+                                    text: '\$52',
+                                    style: purpleTextStyle.copyWith(
+                                      fontSize: 16,
                                     ),
-                                  )
-                                ],
-                              ),
-                            ],
+                                    children: [
+                                      TextSpan(
+                                        text: ' / month',
+                                        style: greyTextStyle.copyWith(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Image.asset(
+                                  'resources/images/icon_star_solid.png',
+                                  height: 20,
+                                  width: 20,
+                                  fit: BoxFit.contain,
+                                ),
+                                const SizedBox(
+                                  width: 2,
+                                ),
+                                Image.asset(
+                                  'resources/images/icon_star_solid.png',
+                                  height: 20,
+                                  width: 20,
+                                  fit: BoxFit.contain,
+                                ),
+                                const SizedBox(
+                                  width: 2,
+                                ),
+                                Image.asset(
+                                  'resources/images/icon_star_solid.png',
+                                  height: 20,
+                                  width: 20,
+                                  fit: BoxFit.contain,
+                                ),
+                                const SizedBox(
+                                  width: 2,
+                                ),
+                                Image.asset(
+                                  'resources/images/icon_star_solid.png',
+                                  height: 20,
+                                  width: 20,
+                                  fit: BoxFit.contain,
+                                ),
+                                const SizedBox(
+                                  width: 2,
+                                ),
+                                Image.asset(
+                                  'resources/images/icon_star_solid.png',
+                                  height: 20,
+                                  width: 20,
+                                  fit: BoxFit.contain,
+                                  color: greyStar,
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  // NOTE: MAIN FACILITIES
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: edgePadding),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Main Facilities',
+                          style: regularTextStyle.copyWith(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
                           ),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            FacilityItem(
+                              name: 'kitchen',
+                              total: 2,
+                              imageUrl: 'resources/images/ic_kitchen.png',
+                            ),
+                            FacilityItem(
+                              name: 'bedroom',
+                              total: 3,
+                              imageUrl: 'resources/images/ic_bedroom.png',
+                            ),
+                            FacilityItem(
+                              name: 'Big Lemari',
+                              total: 3,
+                              imageUrl: 'resources/images/ic_biglemari.png',
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  )
+                  ),
+                  // NOTE: PHOTOS
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             )
