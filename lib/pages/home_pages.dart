@@ -24,6 +24,7 @@ class _HomePageMenuState extends State<HomePageMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       body: SafeArea(
         bottom: false,
         child: Padding(
