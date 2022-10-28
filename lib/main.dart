@@ -1,4 +1,5 @@
 import 'package:bwa_kosans/pages/detail_pages.dart';
+import 'package:bwa_kosans/pages/error_pages.dart';
 import 'package:bwa_kosans/pages/home_pages.dart';
 import 'package:bwa_kosans/pages/splash_pages.dart';
 import 'package:bwa_kosans/themes.dart';
@@ -36,7 +37,10 @@ class KosanApp extends StatelessWidget {
         },
         DetailPage.routeName: (context) {
           return const DetailPage();
-        }
+        },
+        ErrorPages.routeName: (context) {
+          return const ErrorPages();
+        },
       },
     );
   }

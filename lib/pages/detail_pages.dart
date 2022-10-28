@@ -1,7 +1,9 @@
+import 'package:bwa_kosans/pages/error_pages.dart';
 import 'package:bwa_kosans/pages/home_pages.dart';
 import 'package:bwa_kosans/themes.dart';
 import 'package:bwa_kosans/widgets/facility_item.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
@@ -21,6 +23,27 @@ class _DetailPageState extends State<DetailPage> {
     Navigator.popUntil(context, (route) {
       return route.settings.name == HomePageMenu.routeName;
     });
+  }
+
+  openLinkUrlData(String url, BuildContext context) async {
+    Uri uriUrl = Uri.parse(url);
+    if (await canLaunchUrl(uriUrl)) {
+      try {
+        await launchUrl(uriUrl, mode: LaunchMode.platformDefault);
+      } catch (err) {
+        // print(err);
+        Navigator.pushNamed(context, ErrorPages.routeName);
+      }
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return const ErrorPages();
+          },
+        ),
+      );
+    }
   }
 
   @override
@@ -309,7 +332,12 @@ class _DetailPageState extends State<DetailPage> {
                                     ),
                                   ),
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      // openLinkUrlData(
+                                      //     'https://www.google.com/maps/@-6.9007143,107.6188714,16.5z',
+                                      //     context);
+                                      openLinkUrlData('abcde5z', context);
+                                    },
                                     iconSize: 50,
                                     icon: Image.asset(
                                       'resources/images/ic_btn_maps.png',
@@ -333,7 +361,9 @@ class _DetailPageState extends State<DetailPage> {
                           width: MediaQuery.of(context).size.width -
                               (2 * edgePadding),
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              openLinkUrlData('tel:+62112', context);
+                            },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: purpleColor,
                                 shape: RoundedRectangleBorder(
@@ -355,6 +385,7 @@ class _DetailPageState extends State<DetailPage> {
                 ],
               ),
             ),
+            // NOTE: BUTTON NAVIGASI BAR
             Padding(
               padding: const EdgeInsets.symmetric(
                   vertical: 30, horizontal: edgePadding),
