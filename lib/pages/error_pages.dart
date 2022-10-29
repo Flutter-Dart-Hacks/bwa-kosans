@@ -16,8 +16,12 @@ class _ErrorPagesState extends State<ErrorPages> {
       body: SafeArea(
         bottom: false,
         child: Column(
-          children: const [
-            Text('Error page'),
+          children: [
+            Image.asset(
+              'resources/images/ic_404.png',
+              fit: BoxFit.contain,
+            ),
+            const Text('Error page'),
           ],
         ),
       ),
