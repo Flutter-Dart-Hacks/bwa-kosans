@@ -1,6 +1,6 @@
-# bwa_kosans
+# BWA Kosan
 
-A new Flutter project.
+Membuat tampilan pemesanan kos berdasarkan course online Build With Angga.
 
 ## Getting Started
 
