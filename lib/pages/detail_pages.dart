@@ -336,6 +336,7 @@ class _DetailPageState extends State<DetailPage> {
                                       // openLinkUrlData(
                                       //     'https://www.google.com/maps/@-6.9007143,107.6188714,16.5z',
                                       //     context);
+                                      // testing halaman error
                                       openLinkUrlData('abcde5z', context);
                                     },
                                     iconSize: 50,
