@@ -1,12 +1,14 @@
 import 'package:bwa_kosans/models/city_data.dart';
 import 'package:bwa_kosans/models/space_data.dart';
 import 'package:bwa_kosans/models/tips_data.dart';
+import 'package:bwa_kosans/providers/spaces_provider.dart';
 import 'package:bwa_kosans/themes.dart';
 import 'package:bwa_kosans/widgets/bottom_navbar_item.dart';
 import 'package:bwa_kosans/widgets/city_card.dart';
 import 'package:bwa_kosans/widgets/space_card.dart';
 import 'package:bwa_kosans/widgets/tips_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePageMenu extends StatefulWidget {
   const HomePageMenu({Key? key}) : super(key: key);
@@ -23,6 +25,9 @@ class _HomePageMenuState extends State<HomePageMenu> {
 
   @override
   Widget build(BuildContext context) {
+    var spacesProvider = Provider.of<SpaceProvider>(context);
+    var spaceProvider = context.watch<SpaceProvider>();
+
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
@@ -136,53 +141,87 @@ class _HomePageMenuState extends State<HomePageMenu> {
                 ),
                 // NOTE: SPACE PAGES
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  child: Column(
-                    children: [
-                      SpaceCard(
-                        spaceData: SpaceData(
-                            id: 1,
-                            name: 'Kuretakeso Garden',
-                            imageUrl: 'resources/images/space1.png',
-                            price: 52,
-                            city: 'Bandung',
-                            country: 'Germany',
-                            rating: 4),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      SpaceCard(
-                        spaceData: SpaceData(
-                            id: 2,
-                            name: 'Roemah Nenek',
-                            imageUrl: 'resources/images/space2.png',
-                            price: 11,
-                            city: 'Seattle',
-                            country: 'Bogor',
-                            rating: 5),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      SpaceCard(
-                        spaceData: SpaceData(
-                            id: 3,
-                            name: 'Darrling How',
-                            imageUrl: 'resources/images/space3.png',
-                            price: 20,
-                            city: 'Jakarta',
-                            country: 'Indonesia',
-                            rating: 3),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    ],
-                  ),
-                ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    child: FutureBuilder(
+                      future: spaceProvider.getRecommendedSpaces(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Column(
+                            children: [
+                              SpaceCard(
+                                spaceData: SpaceData(
+                                  id: 1,
+                                  name: 'Kuretakeso Garden',
+                                  imageUrl: 'resources/images/space1.png',
+                                  price: 52,
+                                  city: 'Bandung',
+                                  country: 'Germany',
+                                  rating: 4,
+                                  address: '',
+                                  phone: '',
+                                  mapUrl: '',
+                                  listPhotos: [],
+                                  numberOfKitchens: 0,
+                                  numberOfBedrooms: 0,
+                                  numberOfCupboards: 0,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              SpaceCard(
+                                spaceData: SpaceData(
+                                  id: 2,
+                                  name: 'Roemah Nenek',
+                                  imageUrl: 'resources/images/space2.png',
+                                  price: 11,
+                                  city: 'Seattle',
+                                  country: 'Bogor',
+                                  rating: 5,
+                                  address: '',
+                                  phone: '',
+                                  mapUrl: '',
+                                  listPhotos: [],
+                                  numberOfKitchens: 0,
+                                  numberOfBedrooms: 0,
+                                  numberOfCupboards: 0,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              SpaceCard(
+                                spaceData: SpaceData(
+                                  id: 3,
+                                  name: 'Darrling How',
+                                  imageUrl: 'resources/images/space3.png',
+                                  price: 20,
+                                  city: 'Jakarta',
+                                  country: 'Indonesia',
+                                  rating: 3,
+                                  address: '',
+                                  phone: '',
+                                  mapUrl: '',
+                                  listPhotos: [],
+                                  numberOfKitchens: 0,
+                                  numberOfBedrooms: 0,
+                                  numberOfCupboards: 0,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          );
+                        } else {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      },
+                    )),
                 const SizedBox(
                   height: 10,
                 ),

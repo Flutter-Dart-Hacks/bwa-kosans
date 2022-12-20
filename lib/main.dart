@@ -2,11 +2,25 @@ import 'package:bwa_kosans/pages/detail_pages.dart';
 import 'package:bwa_kosans/pages/error_pages.dart';
 import 'package:bwa_kosans/pages/home_pages.dart';
 import 'package:bwa_kosans/pages/splash_pages.dart';
+import 'package:bwa_kosans/providers/spaces_provider.dart';
 import 'package:bwa_kosans/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const KosanApp());
+  // menggunakan provider
+  // https://docs.flutter.dev/development/data-and-backend/state-mgmt/simple#changenotifierprovider
+  // runApp(const KosanApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) {
+          return SpaceProvider();
+        })
+      ],
+      child: const KosanApp(),
+    ),
+  );
 }
 
 class KosanApp extends StatelessWidget {
