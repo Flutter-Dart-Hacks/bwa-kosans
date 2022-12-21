@@ -25,7 +25,7 @@ class _HomePageMenuState extends State<HomePageMenu> {
 
   @override
   Widget build(BuildContext context) {
-    var spacesProvider = Provider.of<SpaceProvider>(context);
+    // var spacesProvider = Provider.of<SpaceProvider>(context);
     var spaceProvider = context.watch<SpaceProvider>();
 
     return Scaffold(
@@ -148,73 +148,89 @@ class _HomePageMenuState extends State<HomePageMenu> {
                       future: spaceProvider.getRecommendedSpaces(),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
+                          List<SpaceData> listspace = snapshot.data ?? [];
+
+                          int indexData = 0;
+
                           return Column(
-                            children: [
-                              SpaceCard(
-                                spaceData: SpaceData(
-                                  id: 1,
-                                  name: 'Kuretakeso Garden',
-                                  imageUrl: 'resources/images/space1.png',
-                                  price: 52,
-                                  city: 'Bandung',
-                                  country: 'Germany',
-                                  rating: 4,
-                                  address: '',
-                                  phone: '',
-                                  mapUrl: '',
-                                  listPhotos: [],
-                                  numberOfKitchens: 0,
-                                  numberOfBedrooms: 0,
-                                  numberOfCupboards: 0,
+                            children: listspace.map((itemspace) {
+                              indexData += 1;
+                              return Container(
+                                margin: EdgeInsets.only(
+                                  top: indexData == 0 ? 0 : 20,
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              SpaceCard(
-                                spaceData: SpaceData(
-                                  id: 2,
-                                  name: 'Roemah Nenek',
-                                  imageUrl: 'resources/images/space2.png',
-                                  price: 11,
-                                  city: 'Seattle',
-                                  country: 'Bogor',
-                                  rating: 5,
-                                  address: '',
-                                  phone: '',
-                                  mapUrl: '',
-                                  listPhotos: [],
-                                  numberOfKitchens: 0,
-                                  numberOfBedrooms: 0,
-                                  numberOfCupboards: 0,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              SpaceCard(
-                                spaceData: SpaceData(
-                                  id: 3,
-                                  name: 'Darrling How',
-                                  imageUrl: 'resources/images/space3.png',
-                                  price: 20,
-                                  city: 'Jakarta',
-                                  country: 'Indonesia',
-                                  rating: 3,
-                                  address: '',
-                                  phone: '',
-                                  mapUrl: '',
-                                  listPhotos: [],
-                                  numberOfKitchens: 0,
-                                  numberOfBedrooms: 0,
-                                  numberOfCupboards: 0,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                            ],
+                                child: SpaceCard(spaceData: itemspace),
+                              );
+                            }).toList(),
                           );
+
+                          // return Column(
+                          //   children: [
+                          //     SpaceCard(
+                          //       spaceData: SpaceData(
+                          //         id: 1,
+                          //         name: 'Kuretakeso Garden',
+                          //         imageUrl: 'resources/images/space1.png',
+                          //         price: 52,
+                          //         city: 'Bandung',
+                          //         country: 'Germany',
+                          //         rating: 4,
+                          //         address: '',
+                          //         phone: '',
+                          //         mapUrl: '',
+                          //         listPhotos: [],
+                          //         numberOfKitchens: 0,
+                          //         numberOfBedrooms: 0,
+                          //         numberOfCupboards: 0,
+                          //       ),
+                          //     ),
+                          //     const SizedBox(
+                          //       height: 20,
+                          //     ),
+                          //     SpaceCard(
+                          //       spaceData: SpaceData(
+                          //         id: 2,
+                          //         name: 'Roemah Nenek',
+                          //         imageUrl: 'resources/images/space2.png',
+                          //         price: 11,
+                          //         city: 'Seattle',
+                          //         country: 'Bogor',
+                          //         rating: 5,
+                          //         address: '',
+                          //         phone: '',
+                          //         mapUrl: '',
+                          //         listPhotos: [],
+                          //         numberOfKitchens: 0,
+                          //         numberOfBedrooms: 0,
+                          //         numberOfCupboards: 0,
+                          //       ),
+                          //     ),
+                          //     const SizedBox(
+                          //       height: 20,
+                          //     ),
+                          //     SpaceCard(
+                          //       spaceData: SpaceData(
+                          //         id: 3,
+                          //         name: 'Darrling How',
+                          //         imageUrl: 'resources/images/space3.png',
+                          //         price: 20,
+                          //         city: 'Jakarta',
+                          //         country: 'Indonesia',
+                          //         rating: 3,
+                          //         address: '',
+                          //         phone: '',
+                          //         mapUrl: '',
+                          //         listPhotos: [],
+                          //         numberOfKitchens: 0,
+                          //         numberOfBedrooms: 0,
+                          //         numberOfCupboards: 0,
+                          //       ),
+                          //     ),
+                          //     const SizedBox(
+                          //       height: 20,
+                          //     ),
+                          //   ],
+                          // );
                         } else {
                           return const Center(
                             child: CircularProgressIndicator(),

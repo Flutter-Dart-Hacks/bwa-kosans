@@ -1,3 +1,5 @@
+import 'package:bwa_kosans/models/detail_arguments.dart';
+import 'package:bwa_kosans/models/space_data.dart';
 import 'package:bwa_kosans/pages/error_pages.dart';
 import 'package:bwa_kosans/pages/home_pages.dart';
 import 'package:bwa_kosans/themes.dart';
@@ -46,16 +48,41 @@ class _DetailPageState extends State<DetailPage> {
     }
   }
 
+  List<Widget> generateListPhotoSpace(
+      BuildContext context, SpaceData spacedata) {
+    List<Widget> listWidget = spacedata.listPhotos.map((urlphoto) {
+      return Image.network(
+        urlphoto,
+        fit: BoxFit.cover,
+        width: 110,
+        height: 88,
+      );
+    }).toList();
+
+    return listWidget;
+  }
+
   @override
   Widget build(BuildContext context) {
+    DetailArguments? argsData =
+        ModalRoute.of(context)?.settings.arguments as DetailArguments;
+
+    SpaceData? spaceData = argsData.spaceData;
+
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
         bottom: false,
         child: Stack(
           children: [
-            Image.asset(
-              'resources/images/thumbnail_detail.png',
+            // Image.asset(
+            //   'resources/images/thumbnail_detail.png',
+            //   fit: BoxFit.cover,
+            //   width: MediaQuery.of(context).size.width,
+            //   height: 350,
+            // ),
+            Image.network(
+              spaceData?.imageUrl ?? '',
               fit: BoxFit.cover,
               width: MediaQuery.of(context).size.width,
               height: 350,
@@ -95,7 +122,7 @@ class _DetailPageState extends State<DetailPage> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Kuretakeso Garden',
+                                        spaceData?.name ?? '',
                                         style: blackTextStyle.copyWith(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 22,
@@ -106,7 +133,7 @@ class _DetailPageState extends State<DetailPage> {
                                       ),
                                       Text.rich(
                                         TextSpan(
-                                          text: '\$52',
+                                          text: '\$${(spaceData?.price ?? '')}',
                                           style: purpleTextStyle.copyWith(
                                             fontSize: 16,
                                           ),
@@ -197,20 +224,20 @@ class _DetailPageState extends State<DetailPage> {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: const [
+                                children: [
                                   FacilityItem(
                                     name: 'kitchen',
-                                    total: 2,
+                                    total: spaceData?.numberOfKitchens ?? 0,
                                     imageUrl: 'resources/images/ic_kitchen.png',
                                   ),
                                   FacilityItem(
                                     name: 'bedroom',
-                                    total: 3,
+                                    total: spaceData?.numberOfBedrooms ?? 0,
                                     imageUrl: 'resources/images/ic_bedroom.png',
                                   ),
                                   FacilityItem(
                                     name: 'Big Lemari',
-                                    total: 3,
+                                    total: spaceData?.numberOfCupboards ?? 0,
                                     imageUrl:
                                         'resources/images/ic_biglemari.png',
                                   ),
@@ -245,56 +272,60 @@ class _DetailPageState extends State<DetailPage> {
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 18,
-                                      ),
-                                      Image.asset(
-                                        'resources/images/photo1.png',
-                                        fit: BoxFit.cover,
-                                        width: 110,
-                                        height: 88,
-                                      ),
-                                      const SizedBox(
-                                        width: 18,
-                                      ),
-                                      Image.asset(
-                                        'resources/images/photo2.png',
-                                        fit: BoxFit.cover,
-                                        width: 110,
-                                        height: 88,
-                                      ),
-                                      const SizedBox(
-                                        width: 18,
-                                      ),
-                                      Image.asset(
-                                        'resources/images/photo3.png',
-                                        fit: BoxFit.cover,
-                                        width: 110,
-                                        height: 88,
-                                      ),
-                                      const SizedBox(
-                                        width: 18,
-                                      ),
-                                      Image.asset(
-                                        'resources/images/photo2.png',
-                                        fit: BoxFit.cover,
-                                        width: 110,
-                                        height: 88,
-                                      ),
-                                      const SizedBox(
-                                        width: 18,
-                                      ),
-                                      Image.asset(
-                                        'resources/images/photo1.png',
-                                        fit: BoxFit.cover,
-                                        width: 110,
-                                        height: 88,
-                                      ),
-                                      const SizedBox(
-                                        width: 18,
-                                      ),
-                                    ],
+                                    children: spaceData?.listPhotos != null
+                                        ? generateListPhotoSpace(
+                                            context, spaceData!)
+                                        : [],
+                                    // children: [
+                                    //   const SizedBox(
+                                    //     width: 18,
+                                    //   ),
+                                    //   Image.asset(
+                                    //     'resources/images/photo1.png',
+                                    //     fit: BoxFit.cover,
+                                    //     width: 110,
+                                    //     height: 88,
+                                    //   ),
+                                    //   const SizedBox(
+                                    //     width: 18,
+                                    //   ),
+                                    //   Image.asset(
+                                    //     'resources/images/photo2.png',
+                                    //     fit: BoxFit.cover,
+                                    //     width: 110,
+                                    //     height: 88,
+                                    //   ),
+                                    //   const SizedBox(
+                                    //     width: 18,
+                                    //   ),
+                                    //   Image.asset(
+                                    //     'resources/images/photo3.png',
+                                    //     fit: BoxFit.cover,
+                                    //     width: 110,
+                                    //     height: 88,
+                                    //   ),
+                                    //   const SizedBox(
+                                    //     width: 18,
+                                    //   ),
+                                    //   Image.asset(
+                                    //     'resources/images/photo2.png',
+                                    //     fit: BoxFit.cover,
+                                    //     width: 110,
+                                    //     height: 88,
+                                    //   ),
+                                    //   const SizedBox(
+                                    //     width: 18,
+                                    //   ),
+                                    //   Image.asset(
+                                    //     'resources/images/photo1.png',
+                                    //     fit: BoxFit.cover,
+                                    //     width: 110,
+                                    //     height: 88,
+                                    //   ),
+                                    //   const SizedBox(
+                                    //     width: 18,
+                                    //   ),
+                                    // ],
                                   ),
                                 ),
                               )

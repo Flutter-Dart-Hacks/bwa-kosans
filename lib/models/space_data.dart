@@ -9,7 +9,7 @@ class SpaceData {
   String address = "";
   String phone = "";
   String mapUrl = "";
-  List<String> listPhotos = [];
+  List listPhotos = [];
   int numberOfKitchens = 0;
   int numberOfBedrooms = 0;
   int numberOfCupboards = 0;

@@ -20,9 +20,12 @@ class SpaceCard extends StatelessWidget {
   }
 
   void navigasiNamedRouteDetail(BuildContext context) {
-    print('Navigasi halaman detail');
-    Navigator.pushNamed(context, DetailPage.routeName,
-        arguments: DetailArguments());
+    Navigator.pushNamed(
+      context,
+      DetailPage.routeName,
+      arguments: DetailArguments(
+          stringPayload: 'data_detail', intPayload: 1, spaceData: spaceData),
+    );
   }
 
   @override
@@ -41,9 +44,11 @@ class SpaceCard extends StatelessWidget {
               height: 110,
               child: Stack(
                 children: [
-                  Image.asset(
+                  Image.network(
                     spaceData.imageUrl,
                     fit: BoxFit.cover,
+                    width: 130,
+                    height: 110,
                   ),
                   Align(
                     alignment: Alignment.topRight,
