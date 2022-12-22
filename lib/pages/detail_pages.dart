@@ -50,6 +50,7 @@ class _DetailPageState extends State<DetailPage> {
 
   List<Widget> generateListPhotoSpace(
       BuildContext context, SpaceData spacedata) {
+    // Membuat daftar foto horizontal
     List<Widget> listWidget = spacedata.listPhotos.map((urlphoto) {
       return Image.network(
         urlphoto,
