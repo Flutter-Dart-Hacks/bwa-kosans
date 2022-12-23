@@ -4,6 +4,7 @@ import 'package:bwa_kosans/pages/error_pages.dart';
 import 'package:bwa_kosans/pages/home_pages.dart';
 import 'package:bwa_kosans/themes.dart';
 import 'package:bwa_kosans/widgets/facility_item.dart';
+import 'package:bwa_kosans/widgets/rating_item.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -28,6 +29,7 @@ class _DetailPageState extends State<DetailPage> {
   }
 
   openLinkUrlData(String url, BuildContext context) async {
+    print(url);
     Uri uriUrl = Uri.parse(url);
     if (await canLaunchUrl(uriUrl)) {
       try {
@@ -51,12 +53,31 @@ class _DetailPageState extends State<DetailPage> {
   List<Widget> generateListPhotoSpace(
       BuildContext context, SpaceData spacedata) {
     // Membuat daftar foto horizontal
+    // Menggunakan fade in image
+    // https://stackoverflow.com/questions/49771765/flutter-default-image-to-image-network-when-it-fails
+    // Jika gambar error
     List<Widget> listWidget = spacedata.listPhotos.map((urlphoto) {
-      return Image.network(
-        urlphoto,
-        fit: BoxFit.cover,
-        width: 110,
-        height: 88,
+      return Container(
+        margin: const EdgeInsets.only(left: 18),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: FadeInImage(
+            placeholder: const AssetImage('resources/images/photo1.png'),
+            image: NetworkImage(urlphoto),
+            fit: BoxFit.cover,
+            width: 110,
+            height: 80,
+            imageErrorBuilder: (context, error, stackTrace) {
+              print(stackTrace.toString());
+              return Image.asset(
+                'resources/images/photo1.png',
+                fit: BoxFit.cover,
+                width: 110,
+                height: 80,
+              );
+            },
+          ),
+        ),
       );
     }).toList();
 
@@ -151,51 +172,14 @@ class _DetailPageState extends State<DetailPage> {
                                     ],
                                   ),
                                   Row(
-                                    children: [
-                                      Image.asset(
-                                        'resources/images/icon_star_solid.png',
-                                        height: 20,
-                                        width: 20,
-                                        fit: BoxFit.contain,
-                                      ),
-                                      const SizedBox(
-                                        width: 2,
-                                      ),
-                                      Image.asset(
-                                        'resources/images/icon_star_solid.png',
-                                        height: 20,
-                                        width: 20,
-                                        fit: BoxFit.contain,
-                                      ),
-                                      const SizedBox(
-                                        width: 2,
-                                      ),
-                                      Image.asset(
-                                        'resources/images/icon_star_solid.png',
-                                        height: 20,
-                                        width: 20,
-                                        fit: BoxFit.contain,
-                                      ),
-                                      const SizedBox(
-                                        width: 2,
-                                      ),
-                                      Image.asset(
-                                        'resources/images/icon_star_solid.png',
-                                        height: 20,
-                                        width: 20,
-                                        fit: BoxFit.contain,
-                                      ),
-                                      const SizedBox(
-                                        width: 2,
-                                      ),
-                                      Image.asset(
-                                        'resources/images/icon_star_solid.png',
-                                        height: 20,
-                                        width: 20,
-                                        fit: BoxFit.contain,
-                                        color: greyStar,
-                                      )
-                                    ],
+                                    children: [1, 2, 3, 4, 5].map((index) {
+                                      return Container(
+                                        margin: const EdgeInsets.only(left: 2),
+                                        child: RatingItem(
+                                            index: index,
+                                            rating: spaceData?.rating ?? 0),
+                                      );
+                                    }).toList(),
                                   )
                                 ],
                               ),
@@ -358,7 +342,7 @@ class _DetailPageState extends State<DetailPage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Jln. Kappan Sukses No. 20 \nPalembang',
+                                    '${spaceData?.address ?? ''} \n${spaceData?.city ?? ''}',
                                     style: greyTextStyle.copyWith(
                                       fontSize: 14,
                                     ),
@@ -369,7 +353,11 @@ class _DetailPageState extends State<DetailPage> {
                                       //     'https://www.google.com/maps/@-6.9007143,107.6188714,16.5z',
                                       //     context);
                                       // testing halaman error
-                                      openLinkUrlData('abcde5z', context);
+                                      // openLinkUrlData('abcde5z', context);
+                                      if (spaceData?.mapUrl != null) {
+                                        openLinkUrlData(
+                                            spaceData!.mapUrl, context);
+                                      }
                                     },
                                     iconSize: 50,
                                     icon: Image.asset(
@@ -395,7 +383,8 @@ class _DetailPageState extends State<DetailPage> {
                               (2 * edgePadding),
                           child: ElevatedButton(
                             onPressed: () {
-                              openLinkUrlData('tel:+62112', context);
+                              openLinkUrlData(
+                                  'tel:${spaceData?.phone ?? ''}', context);
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: purpleColor,
