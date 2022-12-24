@@ -1,6 +1,6 @@
 # BWA Kosan
 
-Membuat tampilan pemesanan kos berdasarkan course online Build With Angga.
+Membuat tampilan pemesanan kos berdasarkan course online Build With Angga. Dengan menggunakan Material Design, Provider, HTTP, dan Firebase.
 
 ## Getting Started
 
