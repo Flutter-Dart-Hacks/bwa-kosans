@@ -232,8 +232,10 @@ class _HomePageMenuState extends State<HomePageMenu> {
                           //   ],
                           // );
                         } else {
-                          return const Center(
-                            child: CircularProgressIndicator(),
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.purple.shade600,
+                            ),
                           );
                         }
                       },
