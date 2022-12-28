@@ -36,7 +36,6 @@ class SpaceCard extends StatelessWidget {
       },
       child: Row(
         children: [
-          // Gambar Space
           ClipRRect(
             borderRadius: BorderRadius.circular(18),
             child: SizedBox(
@@ -89,7 +88,7 @@ class SpaceCard extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            width: 20,
+            width: 10,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,6 +97,8 @@ class SpaceCard extends StatelessWidget {
                 spaceData.name,
                 style: blackTextStyle.copyWith(
                     fontSize: 18, fontWeight: FontWeight.w500),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 5,
               ),
               const SizedBox(
                 height: 2,
@@ -121,14 +122,21 @@ class SpaceCard extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              Text(
-                '${spaceData.city}, ${spaceData.country}',
-                style: greyTextStyle.copyWith(
-                  fontSize: 14,
+              ConstrainedBox(
+                constraints: BoxConstraints.loose(
+                    Size.fromWidth(MediaQuery.of(context).size.width / 2)),
+                child: Text(
+                  '${spaceData.city}, ${spaceData.country} Kata yang sangat panjang sekali',
+                  maxLines: 5,
+                  overflow: TextOverflow.ellipsis,
+                  style: greyTextStyle.copyWith(
+                    fontSize: 14,
+                  ),
                 ),
               ),
             ],
           )
+          // Gambar Space
         ],
       ),
     );

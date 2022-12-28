@@ -142,103 +142,108 @@ class _HomePageMenuState extends State<HomePageMenu> {
                 // NOTE: SPACE PAGES
                 Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
+                      horizontal: 10,
                     ),
-                    child: FutureBuilder(
-                      future: spaceProvider.getRecommendedSpaces(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          List<SpaceData> listspace = snapshot.data ?? [];
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints.loose(
+                        Size.fromWidth(MediaQuery.of(context).size.width),
+                      ),
+                      child: FutureBuilder(
+                        future: spaceProvider.getRecommendedSpaces(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            List<SpaceData> listspace = snapshot.data ?? [];
 
-                          int indexData = 0;
+                            int indexData = 0;
 
-                          return Column(
-                            children: listspace.map((itemspace) {
-                              indexData += 1;
-                              return Container(
-                                margin: EdgeInsets.only(
-                                  top: indexData == 0 ? 0 : 20,
-                                ),
-                                child: SpaceCard(spaceData: itemspace),
-                              );
-                            }).toList(),
-                          );
+                            return Column(
+                              children: listspace.map((itemspace) {
+                                indexData += 1;
+                                return Container(
+                                  margin: EdgeInsets.only(
+                                    top: indexData == 0 ? 0 : 20,
+                                  ),
+                                  child: SpaceCard(spaceData: itemspace),
+                                );
+                              }).toList(),
+                            );
 
-                          // return Column(
-                          //   children: [
-                          //     SpaceCard(
-                          //       spaceData: SpaceData(
-                          //         id: 1,
-                          //         name: 'Kuretakeso Garden',
-                          //         imageUrl: 'resources/images/space1.png',
-                          //         price: 52,
-                          //         city: 'Bandung',
-                          //         country: 'Germany',
-                          //         rating: 4,
-                          //         address: '',
-                          //         phone: '',
-                          //         mapUrl: '',
-                          //         listPhotos: [],
-                          //         numberOfKitchens: 0,
-                          //         numberOfBedrooms: 0,
-                          //         numberOfCupboards: 0,
-                          //       ),
-                          //     ),
-                          //     const SizedBox(
-                          //       height: 20,
-                          //     ),
-                          //     SpaceCard(
-                          //       spaceData: SpaceData(
-                          //         id: 2,
-                          //         name: 'Roemah Nenek',
-                          //         imageUrl: 'resources/images/space2.png',
-                          //         price: 11,
-                          //         city: 'Seattle',
-                          //         country: 'Bogor',
-                          //         rating: 5,
-                          //         address: '',
-                          //         phone: '',
-                          //         mapUrl: '',
-                          //         listPhotos: [],
-                          //         numberOfKitchens: 0,
-                          //         numberOfBedrooms: 0,
-                          //         numberOfCupboards: 0,
-                          //       ),
-                          //     ),
-                          //     const SizedBox(
-                          //       height: 20,
-                          //     ),
-                          //     SpaceCard(
-                          //       spaceData: SpaceData(
-                          //         id: 3,
-                          //         name: 'Darrling How',
-                          //         imageUrl: 'resources/images/space3.png',
-                          //         price: 20,
-                          //         city: 'Jakarta',
-                          //         country: 'Indonesia',
-                          //         rating: 3,
-                          //         address: '',
-                          //         phone: '',
-                          //         mapUrl: '',
-                          //         listPhotos: [],
-                          //         numberOfKitchens: 0,
-                          //         numberOfBedrooms: 0,
-                          //         numberOfCupboards: 0,
-                          //       ),
-                          //     ),
-                          //     const SizedBox(
-                          //       height: 20,
-                          //     ),
-                          //   ],
-                          // );
-                        } else {
-                          return Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.purple.shade600,
-                            ),
-                          );
-                        }
-                      },
+                            // return Column(
+                            //   children: [
+                            //     SpaceCard(
+                            //       spaceData: SpaceData(
+                            //         id: 1,
+                            //         name: 'Kuretakeso Garden',
+                            //         imageUrl: 'resources/images/space1.png',
+                            //         price: 52,
+                            //         city: 'Bandung',
+                            //         country: 'Germany',
+                            //         rating: 4,
+                            //         address: '',
+                            //         phone: '',
+                            //         mapUrl: '',
+                            //         listPhotos: [],
+                            //         numberOfKitchens: 0,
+                            //         numberOfBedrooms: 0,
+                            //         numberOfCupboards: 0,
+                            //       ),
+                            //     ),
+                            //     const SizedBox(
+                            //       height: 20,
+                            //     ),
+                            //     SpaceCard(
+                            //       spaceData: SpaceData(
+                            //         id: 2,
+                            //         name: 'Roemah Nenek',
+                            //         imageUrl: 'resources/images/space2.png',
+                            //         price: 11,
+                            //         city: 'Seattle',
+                            //         country: 'Bogor',
+                            //         rating: 5,
+                            //         address: '',
+                            //         phone: '',
+                            //         mapUrl: '',
+                            //         listPhotos: [],
+                            //         numberOfKitchens: 0,
+                            //         numberOfBedrooms: 0,
+                            //         numberOfCupboards: 0,
+                            //       ),
+                            //     ),
+                            //     const SizedBox(
+                            //       height: 20,
+                            //     ),
+                            //     SpaceCard(
+                            //       spaceData: SpaceData(
+                            //         id: 3,
+                            //         name: 'Darrling How',
+                            //         imageUrl: 'resources/images/space3.png',
+                            //         price: 20,
+                            //         city: 'Jakarta',
+                            //         country: 'Indonesia',
+                            //         rating: 3,
+                            //         address: '',
+                            //         phone: '',
+                            //         mapUrl: '',
+                            //         listPhotos: [],
+                            //         numberOfKitchens: 0,
+                            //         numberOfBedrooms: 0,
+                            //         numberOfCupboards: 0,
+                            //       ),
+                            //     ),
+                            //     const SizedBox(
+                            //       height: 20,
+                            //     ),
+                            //   ],
+                            // );
+                          } else {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.purple.shade600,
+                              ),
+                            );
+                          }
+                        },
+                      ),
                     )),
                 const SizedBox(
                   height: 10,
@@ -281,6 +286,14 @@ class _HomePageMenuState extends State<HomePageMenu> {
                       ),
                       const SizedBox(
                         height: 10,
+                      ),
+                      ConstrainedBox(
+                        constraints: BoxConstraints.loose(
+                          Size.fromWidth(MediaQuery.of(context).size.width),
+                        ),
+                        child: const Text(
+                          'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups. Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
+                        ),
                       ),
                     ],
                   ),
