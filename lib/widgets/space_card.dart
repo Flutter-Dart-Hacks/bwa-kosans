@@ -39,14 +39,14 @@ class SpaceCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(18),
             child: SizedBox(
-              width: 130,
+              width: 120,
               height: 110,
               child: Stack(
                 children: [
                   Image.network(
                     spaceData.imageUrl,
                     fit: BoxFit.cover,
-                    width: 130,
+                    width: 120,
                     height: 110,
                   ),
                   Align(
@@ -90,51 +90,65 @@ class SpaceCard extends StatelessWidget {
           const SizedBox(
             width: 10,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                spaceData.name,
-                style: blackTextStyle.copyWith(
-                    fontSize: 18, fontWeight: FontWeight.w500),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 5,
-              ),
-              const SizedBox(
-                height: 2,
-              ),
-              Text.rich(
-                TextSpan(
-                  text: '\$${spaceData.price}',
-                  style: purpleTextStyle.copyWith(
-                    fontSize: 16,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: ' / month',
-                      style: greyTextStyle.copyWith(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              ConstrainedBox(
-                constraints: BoxConstraints.loose(
-                    Size.fromWidth(MediaQuery.of(context).size.width / 2)),
-                child: Text(
-                  '${spaceData.city}, ${spaceData.country} Kata yang sangat panjang sekali',
-                  maxLines: 5,
+          Expanded(
+            flex: 1,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  spaceData.name,
+                  style: blackTextStyle.copyWith(
+                      fontSize: 18, fontWeight: FontWeight.w500),
                   overflow: TextOverflow.ellipsis,
-                  style: greyTextStyle.copyWith(
-                    fontSize: 14,
+                  maxLines: 5,
+                ),
+                const SizedBox(
+                  height: 2,
+                ),
+                Text.rich(
+                  TextSpan(
+                    text: '\$${spaceData.price}',
+                    style: purpleTextStyle.copyWith(
+                      fontSize: 16,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: ' / month',
+                        style: greyTextStyle.copyWith(
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(
+                  height: 8,
+                ),
+                Container(
+                  margin: const EdgeInsets.all(1),
+                  child: Text(
+                    '${spaceData.city}, ${spaceData.country}. Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
+                    maxLines: 10,
+                    overflow: TextOverflow.ellipsis,
+                    style: greyTextStyle.copyWith(
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+                // ConstrainedBox(
+                //   constraints: BoxConstraints.loose(
+                //       Size.fromWidth(MediaQuery.of(context).size.width / 2)),
+                //   child: Text(
+                //     '${spaceData.city}, ${spaceData.country} Kata yang sangat panjang sekali',
+                //     maxLines: 5,
+                //     overflow: TextOverflow.ellipsis,
+                //     style: greyTextStyle.copyWith(
+                //       fontSize: 14,
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
           )
           // Gambar Space
         ],
