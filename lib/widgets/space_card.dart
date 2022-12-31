@@ -90,6 +90,8 @@ class SpaceCard extends StatelessWidget {
           const SizedBox(
             width: 10,
           ),
+          // Gunakan expanded agar text tidak melebihi ukuran layar
+          // Gunakan container box pada text
           Expanded(
             flex: 1,
             child: Column(

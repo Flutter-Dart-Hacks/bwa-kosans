@@ -139,37 +139,40 @@ class _DetailPageState extends State<DetailPage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        spaceData?.name ?? '',
-                                        style: blackTextStyle.copyWith(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 22,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 2,
-                                      ),
-                                      Text.rich(
-                                        TextSpan(
-                                          text: '\$${(spaceData?.price ?? '')}',
-                                          style: purpleTextStyle.copyWith(
-                                            fontSize: 16,
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          spaceData?.name ?? '',
+                                          style: blackTextStyle.copyWith(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 22,
                                           ),
-                                          children: [
-                                            TextSpan(
-                                              text: ' / month',
-                                              style: greyTextStyle.copyWith(
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ],
                                         ),
-                                      ),
-                                    ],
+                                        const SizedBox(
+                                          height: 2,
+                                        ),
+                                        Text.rich(
+                                          TextSpan(
+                                            text:
+                                                '\$${(spaceData?.price ?? '')}',
+                                            style: purpleTextStyle.copyWith(
+                                              fontSize: 16,
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: ' / month',
+                                                style: greyTextStyle.copyWith(
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                   Row(
                                     children: [1, 2, 3, 4, 5].map((index) {
