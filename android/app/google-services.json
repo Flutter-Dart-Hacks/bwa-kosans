@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "995399169883",
+    "project_id": "bwakosantest1",
+    "storage_bucket": "bwakosantest1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995399169883:android:278c3c5459072100e0cc7e",
+        "android_client_info": {
+          "package_name": "gulajava.bwa_kosans"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995399169883-sbol6limm11ippri7j2o9flk3opargba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQl0DpQdLb3toC--GhmbJKoVK2nxh3Hbs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995399169883-sbol6limm11ippri7j2o9flk3opargba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
