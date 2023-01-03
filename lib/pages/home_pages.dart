@@ -118,6 +118,39 @@ class _HomePageMenuState extends State<HomePageMenu> {
                         ),
                       ),
                       const SizedBox(
+                        width: 10,
+                      ),
+                      CardCity(
+                        cityData: CityData(
+                          id: 4,
+                          name: 'Palembang',
+                          imageUrl: 'resources/images/city4.png',
+                          isFavorite: false,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      CardCity(
+                        cityData: CityData(
+                          id: 5,
+                          name: 'Aceh',
+                          imageUrl: 'resources/images/city5.png',
+                          isFavorite: true,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      CardCity(
+                        cityData: CityData(
+                          id: 6,
+                          name: 'Bogor',
+                          imageUrl: 'resources/images/city6.png',
+                          isFavorite: false,
+                        ),
+                      ),
+                      const SizedBox(
                         width: edgePadding,
                       ),
                     ],

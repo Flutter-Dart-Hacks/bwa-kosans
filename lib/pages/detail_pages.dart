@@ -18,6 +18,8 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  bool isFavorited = false;
+
   navigasiKembaliHalamanSebelumnya(BuildContext context) {
     print('Tap button kembali');
     // Push dan pop sampai router name
@@ -33,7 +35,7 @@ class _DetailPageState extends State<DetailPage> {
     Uri uriUrl = Uri.parse(url);
     if (await canLaunchUrl(uriUrl)) {
       try {
-        await launchUrl(uriUrl, mode: LaunchMode.platformDefault);
+        await launchUrl(uriUrl, mode: LaunchMode.externalApplication);
       } catch (err) {
         // print(err);
         Navigator.pushNamed(context, ErrorPages.routeName);
@@ -48,6 +50,39 @@ class _DetailPageState extends State<DetailPage> {
         ),
       );
     }
+  }
+
+  Future<void> showDialogKonfirmasiTelpon(
+      BuildContext context, String nomorTelp) async {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Konfirmasi'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: const <Widget>[
+                  Text('Apakah anda ingin menghubungi pemilik kosan ?'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Hubungi'),
+                onPressed: () {
+                  openLinkUrlData('tel:$nomorTelp', context);
+                  Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: const Text('Batal'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
   }
 
   List<Widget> generateListPhotoSpace(
@@ -386,8 +421,10 @@ class _DetailPageState extends State<DetailPage> {
                               (2 * edgePadding),
                           child: ElevatedButton(
                             onPressed: () {
-                              openLinkUrlData(
-                                  'tel:${spaceData?.phone ?? ''}', context);
+                              // openLinkUrlData(
+                              //     'tel:${spaceData?.phone ?? ''}', context);
+                              showDialogKonfirmasiTelpon(
+                                  context, spaceData?.phone ?? '');
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: purpleColor,
@@ -428,11 +465,20 @@ class _DetailPageState extends State<DetailPage> {
                       height: 40,
                     ),
                   ),
-                  Image.asset(
-                    'resources/images/ic_btn_wishlist.png',
-                    fit: BoxFit.contain,
-                    width: 40,
-                    height: 40,
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        isFavorited = !isFavorited;
+                      });
+                    },
+                    child: Image.asset(
+                      isFavorited
+                          ? 'resources/images/ic_btn_wishlist_filled.png'
+                          : 'resources/images/ic_btn_wishlist.png',
+                      fit: BoxFit.contain,
+                      width: 40,
+                      height: 40,
+                    ),
                   ),
                 ],
               ),
