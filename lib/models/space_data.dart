@@ -30,6 +30,9 @@ class SpaceData {
       required this.numberOfBedrooms,
       required this.numberOfCupboards});
 
+  // Named constructor
+  SpaceData.withNameAndPhone(this.name, this.phone);
+
   SpaceData.fromJsons(jsondata) {
     id = jsondata['id'];
     name = jsondata['name'];
