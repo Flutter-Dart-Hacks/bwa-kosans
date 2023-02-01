@@ -30,6 +30,8 @@ class _DetailPageState extends State<DetailPage> {
     });
   }
 
+  // Build context mesti dilakukan pengecekan terlebih dahulu
+  // https://dart-lang.github.io/linter/lints/use_build_context_synchronously.html
   openLinkUrlData(String url, BuildContext context) async {
     print(url);
     Uri uriUrl = Uri.parse(url);
@@ -38,17 +40,21 @@ class _DetailPageState extends State<DetailPage> {
         await launchUrl(uriUrl, mode: LaunchMode.externalApplication);
       } catch (err) {
         // print(err);
-        Navigator.pushNamed(context, ErrorPages.routeName);
+        if (context.mounted) {
+          Navigator.pushNamed(context, ErrorPages.routeName);
+        }
       }
     } else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const ErrorPages();
-          },
-        ),
-      );
+      if (context.mounted) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const ErrorPages();
+            },
+          ),
+        );
+      }
     }
   }
 
